@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">TODO-Application</string>
+    <string name="create">Create</string>
+    <string name="new_task">New Task</string>
+    <string name="task_name">Task name</string>
+    <string name="date">Friday 17,December</string>
+    <string name="time">11:15 - 12:00 AM</string>
+    <string name="remind">Remind me</string>
+    <string name="create_task">Create Task</string>
 </resources>
