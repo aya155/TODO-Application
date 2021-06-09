@@ -3,8 +3,10 @@ package com.chocolate_team.todo_application.ui.activities
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
+import com.chocolate_team.todo_application.data.domain.TodoDbHelper
 import com.chocolate_team.todo_application.databinding.ActivityTabBinding
 import com.chocolate_team.todo_application.ui.fragments.HomeFragment
+import com.chocolate_team.todo_application.util.DbUtil
 
 
 class TabActivity : BaseActivity<ActivityTabBinding>() {
@@ -13,16 +15,16 @@ class TabActivity : BaseActivity<ActivityTabBinding>() {
     override val bindingInflater: (LayoutInflater) -> ActivityTabBinding=ActivityTabBinding::inflate
 
     override fun setup() {
+        // create database
+        DbUtil.initialDataBase(applicationContext)
+        // initial show home activity
         addFragment(HomeFragment())
     }
 
     override fun addCallBack() {
     }
-
-     private fun addFragment(fragment: Fragment) {
+    // add fragment
+    private fun addFragment(fragment: Fragment) {
         binding?.let { supportFragmentManager.beginTransaction().add(it.fragmentContainer.id,fragment).commit() }
     }
-
-
-
 }
