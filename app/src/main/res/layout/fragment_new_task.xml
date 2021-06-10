@@ -7,6 +7,7 @@
     android:layout_height="match_parent">
 
     <ImageView
+        android:id="@+id/close_btn"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_marginStart="16dp"
@@ -48,29 +49,29 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/task_title"
         android:layout_width="350dp"
         android:layout_height="65dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="20dp"
-        android:text="Task name"
+        android:hint="Task name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/shapeableImageView"
+        android:id="@+id/set_date_btn"
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:layout_marginTop="24dp"
         android:background="#CCC9D1"
         android:scaleType="center"
         android:src="@drawable/ic_baseline_date_range_24"
-        app:layout_constraintStart_toStartOf="@+id/editText"
-        app:layout_constraintTop_toBottomOf="@+id/editText"
+        app:layout_constraintStart_toStartOf="@+id/task_title"
+        app:layout_constraintTop_toBottomOf="@+id/task_title"
         app:shapeAppearanceOverlay="@style/circle" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/task_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
@@ -78,23 +79,23 @@
         android:text="Friday 17,December"
         android:textColor="@color/black"
         android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/shapeableImageView"
-        app:layout_constraintTop_toTopOf="@+id/shapeableImageView" />
+        app:layout_constraintStart_toEndOf="@+id/set_date_btn"
+        app:layout_constraintTop_toTopOf="@+id/set_date_btn" />
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/shapeableImageView2"
+        android:id="@+id/set_time_btn"
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:layout_marginTop="24dp"
         android:background="#ECB2B8"
         android:scaleType="center"
         android:src="@drawable/ic_baseline_access_time_24"
-        app:layout_constraintStart_toStartOf="@+id/shapeableImageView"
-        app:layout_constraintTop_toBottomOf="@+id/shapeableImageView"
+        app:layout_constraintStart_toStartOf="@+id/set_date_btn"
+        app:layout_constraintTop_toBottomOf="@+id/set_date_btn"
         app:shapeAppearanceOverlay="@style/circle" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/task_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
@@ -102,23 +103,23 @@
         android:text="11:15 - 12:00 AM"
         android:textColor="@color/black"
         android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/shapeableImageView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintStart_toEndOf="@+id/set_time_btn"
+        app:layout_constraintTop_toBottomOf="@+id/task_date" />
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/shapeableImageView3"
+        android:id="@+id/remind_btn"
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:layout_marginTop="24dp"
         android:background="#b5a3bc"
         android:scaleType="center"
         android:src="@drawable/ic_baseline_textsms_24"
-        app:layout_constraintStart_toStartOf="@+id/shapeableImageView2"
-        app:layout_constraintTop_toBottomOf="@+id/shapeableImageView2"
+        app:layout_constraintStart_toStartOf="@+id/set_time_btn"
+        app:layout_constraintTop_toBottomOf="@+id/set_time_btn"
         app:shapeAppearanceOverlay="@style/circle" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/remind_me_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
@@ -126,21 +127,22 @@
         android:text="Remind me"
         android:textColor="@color/black"
         android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/shapeableImageView3"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintStart_toEndOf="@+id/remind_btn"
+        app:layout_constraintTop_toBottomOf="@+id/task_time" />
 
     <Switch
-        android:id="@+id/switch1"
+        android:id="@+id/remind_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="116dp"
         android:thumb="@drawable/thumb"
         android:track="@drawable/track"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toTopOf="@+id/textView4"
+        app:layout_constraintStart_toEndOf="@+id/remind_me_text"
+        app:layout_constraintTop_toTopOf="@+id/remind_me_text"
         tools:ignore="UseSwitchCompatOrMaterialXml" />
 
     <Button
+        android:id="@+id/create_task_btn"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
@@ -149,9 +151,9 @@
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/switch1"
-        app:layout_constraintStart_toStartOf="@+id/shapeableImageView3"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintEnd_toEndOf="@+id/remind_switch"
+        app:layout_constraintStart_toStartOf="@+id/remind_btn"
+        app:layout_constraintTop_toBottomOf="@+id/remind_me_text" />
 </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
