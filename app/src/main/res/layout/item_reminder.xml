@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <View
+        android:id="@+id/lineReminder"
+        android:layout_width="75dp"
+        android:layout_height="25dp"
+        android:layout_margin="6dp"
+        android:background="@drawable/line_reminder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/timeReminder"/>
+
+    <TextView
+        android:id="@+id/timeReminder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/sequel_sans_semi_bold_disp"
+        android:text="11:30AM"
+        android:textColor="#322e4b"
+        android:textSize="24sp"
+        android:layout_margin="25dp"
+        app:layout_constraintStart_toEndOf="@id/lineReminder"
+        app:layout_constraintTop_toTopOf="@id/lineReminder"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
