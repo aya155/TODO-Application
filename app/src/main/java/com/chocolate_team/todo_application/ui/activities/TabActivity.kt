@@ -13,7 +13,7 @@ class TabActivity : BaseActivity<ActivityTabBinding>() {
     override val bindingInflater: (LayoutInflater) -> ActivityTabBinding=ActivityTabBinding::inflate
 
     override fun setup() {
-        addFragment(HomeFragment())
+
     }
 
     override fun addCallBack() {
@@ -23,6 +23,9 @@ class TabActivity : BaseActivity<ActivityTabBinding>() {
         binding?.let { supportFragmentManager.beginTransaction().add(it.fragmentContainer.id,fragment).commit() }
     }
 
+    override fun lightNightMode() {
+        TODO("Not yet implemented")
+    }
 
 
 }
