@@ -13,8 +13,6 @@ interface BaseInterface <VB:ViewBinding>{
     var binding: VB?
         get() = _binding as VB?
         set(value) = TODO()
-    val mContext: Activity?
-    val appContext: Application?
     fun setup()
     fun addCallBack()
     fun lightNightMode()

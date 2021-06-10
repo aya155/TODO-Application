@@ -1,7 +1,5 @@
 package com.chocolate_team.todo_application.ui.fragments
 
-import android.app.Activity
-import android.app.Application
 import android.view.LayoutInflater
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,7 +10,7 @@ import com.chocolate_team.todo_application.ui.adapters.RecyclerAdapter
 import java.util.ArrayList
 
 
-class HomeFragment(override val mContext: Activity?, override val appContext: Application?) : BaseFragment<FragmentHomeBinding>() {
+class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     override val LOG_TAG: String="HOME_FRAGMENT"
     override val bindingInflater: (LayoutInflater) -> FragmentHomeBinding=FragmentHomeBinding::inflate
 
@@ -30,9 +28,9 @@ class HomeFragment(override val mContext: Activity?, override val appContext: Ap
 
 
         //Recycler View Adapter
-        val mAdapter = mContext?.let { RecyclerAdapter(dataList, it) }
+        val mAdapter = activity?.let { RecyclerAdapter(dataList, it) }
         val mLayoutManager: RecyclerView.LayoutManager =
-            LinearLayoutManager(appContext)
+            LinearLayoutManager(activity?.applicationContext)
         recyclerView.layoutManager = mLayoutManager
         recyclerView.itemAnimator = DefaultItemAnimator()
         recyclerView.adapter = mAdapter
