@@ -23,6 +23,8 @@ class TabActivity : BaseActivity<ActivityTabBinding>() {
         binding?.let { supportFragmentManager.beginTransaction().add(it.fragmentContainer.id,fragment).commit() }
     }
 
+    override fun lightNightMode() {
+    }
 
 
 }

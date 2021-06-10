@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintItems"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <TextView
+            android:id="@+id/tvTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="12:00 AM"
+            android:textColor="#acb9c5"
+            android:fontFamily="@font/sequel_sans_semi_bold_disp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/quarterTimeline"/>
+
+
+        <View
+            android:id="@+id/quarterTimeline"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/quarter_timeline"
+            app:layout_constraintStart_toStartOf="@id/tvTime"
+            app:layout_constraintTop_toBottomOf="@id/tvTime"/>
+        <View
+            android:id="@+id/halfTimeline"
+            android:layout_width="50dp"
+            android:layout_height="25dp"
+            android:background="@drawable/quarter_timeline"
+            app:layout_constraintStart_toStartOf="@id/quarterTimeline"
+            app:layout_constraintTop_toBottomOf="@id/quarterTimeline"/>
+
+        <View
+            android:id="@+id/halfQuarterTimeline"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/quarter_timeline"
+            app:layout_constraintStart_toStartOf="@id/halfTimeline"
+            app:layout_constraintTop_toBottomOf="@id/halfTimeline"/>
+
+        <TextView
+            android:id="@+id/tvTime2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_marginTop="10dp"
+            android:text="1:00 AM"
+            android:fontFamily="@font/sequel_sans_semi_bold_disp"
+            android:textColor="#acb9c5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/halfQuarterTimeline"/>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/taskDescriptionCard"
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:background="@color/white"
+            app:layout_constraintTop_toTopOf="@id/tvTime"
+            app:layout_constraintStart_toEndOf="@id/tvTime">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/cardTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Design Meeting"
+                    android:layout_margin="20dp"
+                    android:fontFamily="@font/sequel_sans_semi_bold_disp"
+                    android:textSize="16dp"
+                    app:layout_constraintStart_toEndOf="@id/lineNoReminder"
+                    app:layout_constraintTop_toTopOf="@id/lineNoReminder"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+                <View
+                    android:id="@+id/lineNoReminder"
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:background="#d6a1ff"
+                    android:layout_margin="10dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="09:00 - 10:15"
+                    android:textColor="#acb9c5"
+                    android:textSize="16dp"
+                    android:fontFamily="@font/sequel_sans_semi_bold_disp"
+                    app:layout_constraintTop_toBottomOf="@id/cardTitle"
+                    app:layout_constraintStart_toStartOf="@id/cardTitle"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>

@@ -16,5 +16,6 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity(), BaseInterfa
         setContentView(requireNotNull(_binding).root)
         setup()
         addCallBack()
+        lightNightMode()
     }
 }
