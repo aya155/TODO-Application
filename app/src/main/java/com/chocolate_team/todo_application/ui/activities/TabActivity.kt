@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import com.chocolate_team.todo_application.data.domain.TodoDbHelper
 import com.chocolate_team.todo_application.databinding.ActivityTabBinding
 import com.chocolate_team.todo_application.ui.fragments.HomeFragment
+import com.chocolate_team.todo_application.ui.fragments.NewTaskFragment
 import com.chocolate_team.todo_application.util.DbUtil
 
 
@@ -26,5 +27,9 @@ class TabActivity : BaseActivity<ActivityTabBinding>() {
     // add fragment
     private fun addFragment(fragment: Fragment) {
         binding?.let { supportFragmentManager.beginTransaction().add(it.fragmentContainer.id,fragment).commit() }
+    }
+
+    override fun lightNightMode() {
+
     }
 }

@@ -16,4 +16,19 @@ object DbUtil {
         databaseHelper.writableDatabase.insert(Constant.TABLE_NAME,null,entry)
     }
 
+    fun getEntries():ArrayList<ContentValues>{
+        val cursor=databaseHelper.readableDatabase.rawQuery("SELECT * FROM ${Constant.TABLE_NAME}", arrayOf<String>())
+        return ArrayList<ContentValues>().apply {
+            while (cursor.moveToNext()){
+                add(ContentValues().apply {
+                    put(Constant.ID,cursor.getInt(0))
+                    put(Constant.TITLE,cursor.getString(1))
+                    put(Constant.START_TIME,cursor.getString(2))
+                    put(Constant.END_TIME,cursor.getString(3))
+                    put(Constant.DUE_DATE,cursor.getString(4))
+                    put(Constant.REMIND,cursor.getInt(5))
+                })
+        }
+        }
+    }
 }

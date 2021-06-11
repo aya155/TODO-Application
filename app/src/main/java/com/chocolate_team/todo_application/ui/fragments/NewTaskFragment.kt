@@ -21,15 +21,17 @@ class NewTaskFragment: BaseFragment<FragmentNewTaskBinding>() {
     }
 
     private fun setDefault() {
-        Date().apply {
-            val timeDate=SimpleDateFormat("HH-mm", Locale.getDefault()).format(this).split('-')
+            val startTime=SimpleDateFormat("HH-mm", Locale.getDefault()).format(Date()).split('-')
             // set time current time
-            setAndStoreTime(hour=timeDate[0].toInt(), minute=timeDate[1].toInt())
-            // set date in after day
-            setAndStoreDate(Calendar.getInstance().apply { add(Calendar.DATE ,1) }.timeInMillis)
+            setAndStoreTime(hour=startTime[0].toInt(), minute=startTime[1].toInt(),Constant.START_TIME)
+         Calendar.getInstance().apply {
+             // set date in after day
+             setAndStoreDate(this.apply { add(Calendar.DATE ,1) }.timeInMillis)
+             val endTime=SimpleDateFormat("HH-mm", Locale.getDefault()).format(this.apply {  add(Calendar.HOUR,1)}.time).split('-')
+             setAndStoreTime(hour=endTime[0].toInt(), minute=endTime[1].toInt(),Constant.END_TIME)
+         }
         }
 
-    }
 
     override fun addCallBack() {
         binding?.apply {
@@ -69,22 +71,26 @@ class NewTaskFragment: BaseFragment<FragmentNewTaskBinding>() {
     }
 
     private fun setTime(){
-         MaterialTimePicker.Builder()
-             .setTimeFormat(TimeFormat.CLOCK_12H) // set 12 hour
-             .setHour(12) // set initial hour
-             .setMinute(0) // set initial minute
-             .setTitleText("set Time") // set title in picker
-             .build().apply {
-                 // when user click ok button
-                 addOnPositiveButtonClickListener{
-                     setAndStoreTime(hour,minute)
-                 }
-                 show((this@NewTaskFragment.activity?.supportFragmentManager)!!,"TIME_PICKER")
-             }
+        timePicker(Constant.START_TIME)
+    }
+    private fun timePicker(time:String){
+        MaterialTimePicker.Builder()
+            .setTimeFormat(TimeFormat.CLOCK_12H) // set 12 hour
+            .setHour(12) // set initial hour
+            .setMinute(0) // set initial minute
+            .setTitleText("set Time") // set title in picker
+            .build().apply {
+                // when user click ok button
+                addOnPositiveButtonClickListener{
+                    setAndStoreTime(hour,minute,time)
+                    takeIf { time==Constant.START_TIME }?.let { timePicker(Constant.END_TIME) }
+                }
+                show((this@NewTaskFragment.activity?.supportFragmentManager)!!,"TIME_PICKER")
+            }
     }
 
     // set time in layout and store in contentValue
-    private fun setAndStoreTime(hour:Int,minute:Int) {
+    private fun setAndStoreTime(hour:Int,minute:Int,time:String) {
         // set hour and minute just convert from 24 to 12 hour mode
         val calendar=Calendar.getInstance().apply {
             set(Calendar.HOUR, hour)
@@ -92,9 +98,10 @@ class NewTaskFragment: BaseFragment<FragmentNewTaskBinding>() {
         }
         SimpleDateFormat("hh:mm a").format(calendar.time).apply {
             // show time in fragment
-            binding?.taskTime?.text=this
+
+            binding?.taskTime?.text=if(time==Constant.END_TIME) binding?.taskTime?.text.toString() +this else "$this - "
             // store time in content Value
-            contentValues.put(Constant.DUE_TIME,this)
+            contentValues.put(time,this)
         }
     }
      private fun setDate(){
@@ -118,5 +125,9 @@ class NewTaskFragment: BaseFragment<FragmentNewTaskBinding>() {
                 "${calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault())}" // get month name
         // store date in content values
         contentValues.put(Constant.DUE_DATE,"$dayNum-${calendar.get(Calendar.MONTH) + 1}-${calendar.get(Calendar.YEAR)}")
+    }
+
+    override fun lightNightMode() {
+
     }
 }

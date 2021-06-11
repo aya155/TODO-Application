@@ -6,5 +6,6 @@ object Constant {
     const val ID="id"
     const val TITLE="title"
     const val DUE_DATE="date"
-    const val DUE_TIME="time"
+    const val START_TIME="start_time"
+    const val END_TIME="end_time"
 }

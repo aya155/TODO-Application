@@ -11,7 +11,8 @@ class TodoDbHelper(context: Context):SQLiteOpenHelper(context,DB_NAME,null,VERSI
         val sql="CREATE TABLE ${Constant.TABLE_NAME} (" +
                 "${Constant.ID} INTEGER PRIMARY KEY ," +
                 "${Constant.TITLE} TEXT ," +
-                "${Constant.DUE_TIME} TEXT," +
+                "${Constant.START_TIME} TEXT," +
+                "${Constant.END_TIME} TEXT," +
                 "${Constant.DUE_DATE} TEXT," +
                 "${Constant.REMIND} BOOLEAN " +
                 ")"
