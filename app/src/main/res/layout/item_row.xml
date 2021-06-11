@@ -9,41 +9,61 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <View
+            android:id="@+id/lineReminder"
+            android:layout_width="75dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/line_reminder"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/timeReminder"/>
 
+        <TextView
+            android:id="@+id/timeReminder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sequel_sans_semi_bold_disp"
+            android:text="11:30AM"
+            android:textColor="#322e4b"
+            android:textSize="24sp"
+            android:layout_margin="20dp"
+            app:layout_constraintStart_toEndOf="@id/lineReminder"
+            app:layout_constraintTop_toTopOf="@id/lineReminder"/>
 
         <TextView
             android:id="@+id/tvTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dp"
             android:text="12:00 AM"
-            android:textColor="#acb9c5"
-            android:fontFamily="@font/sequel_sans_semi_bold_disp"
-            app:layout_constraintTop_toTopOf="parent"
+            android:textColor="#7f8b94"
+            android:layout_marginTop="20dp"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/sequel_sans_light_disp"
+            app:layout_constraintTop_toBottomOf="@id/lineReminder"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toTopOf="@id/quarterTimeline"/>
 
 
         <View
             android:id="@+id/quarterTimeline"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_margin="10dp"
+            android:layout_width="15dp"
+            android:layout_height="20dp"
             android:background="@drawable/quarter_timeline"
             app:layout_constraintStart_toStartOf="@id/tvTime"
             app:layout_constraintTop_toBottomOf="@id/tvTime"/>
         <View
             android:id="@+id/halfTimeline"
-            android:layout_width="50dp"
-            android:layout_height="25dp"
+            android:layout_width="25dp"
+            android:layout_height="20dp"
             android:background="@drawable/quarter_timeline"
             app:layout_constraintStart_toStartOf="@id/quarterTimeline"
             app:layout_constraintTop_toBottomOf="@id/quarterTimeline"/>
 
         <View
             android:id="@+id/halfQuarterTimeline"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="15dp"
+            android:layout_height="20dp"
             android:background="@drawable/quarter_timeline"
             app:layout_constraintStart_toStartOf="@id/halfTimeline"
             app:layout_constraintTop_toBottomOf="@id/halfTimeline"/>
@@ -52,11 +72,11 @@
             android:id="@+id/tvTime2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:layout_marginTop="10dp"
             android:text="1:00 AM"
-            android:fontFamily="@font/sequel_sans_semi_bold_disp"
-            android:textColor="#acb9c5"
+            android:fontFamily="@font/sequel_sans_light_disp"
+            android:textColor="#7f8b94"
+            android:textSize="12sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/halfQuarterTimeline"/>
 
@@ -65,8 +85,11 @@
             android:layout_width="200dp"
             android:layout_height="100dp"
             android:background="@color/white"
+            android:layout_margin="25dp"
+            app:cardCornerRadius="10dp"
             app:layout_constraintTop_toTopOf="@id/tvTime"
-            app:layout_constraintStart_toEndOf="@id/tvTime">
+            app:layout_constraintStart_toEndOf="@id/tvTime"
+            app:layout_constraintBottom_toBottomOf="@id/tvTime2">
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -90,16 +113,20 @@
                     android:layout_margin="10dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/cardTitle"/>
                 <TextView
+                    android:id="@+id/taskTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="09:00 - 10:15"
-                    android:textColor="#acb9c5"
+                    android:textColor="#7f8b94"
                     android:textSize="16dp"
-                    android:fontFamily="@font/sequel_sans_semi_bold_disp"
+                    android:fontFamily="@font/sequel_sans_light_disp"
                     app:layout_constraintTop_toBottomOf="@id/cardTitle"
-                    app:layout_constraintStart_toStartOf="@id/cardTitle"/>
+                    app:layout_constraintStart_toStartOf="@id/cardTitle"
+                    app:layout_constraintBottom_toBottomOf="@id/lineNoReminder"
+                    app:layout_constraintEnd_toEndOf="@id/cardTitle"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
