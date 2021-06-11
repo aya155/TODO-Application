@@ -3,6 +3,7 @@ package com.chocolate_team.todo_application.ui.fragments
 import android.content.ContentValues
 import android.view.LayoutInflater
 import com.chocolate_team.todo_application.databinding.FragmentNewTaskBinding
+import com.chocolate_team.todo_application.ui.adapters.RecyclerAdapter
 import com.chocolate_team.todo_application.util.Constant
 import com.chocolate_team.todo_application.util.DbUtil
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -64,6 +65,7 @@ class NewTaskFragment: BaseFragment<FragmentNewTaskBinding>() {
     private fun createTask() {
         // add task in database
         DbUtil.insertEntry(contentValues)
+        Constant.tAdapter.setData(DbUtil.getEntries())
     }
     private fun backToHome(){
         // remove this fragment and back to home activity
