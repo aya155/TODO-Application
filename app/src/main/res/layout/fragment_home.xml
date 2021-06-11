@@ -22,52 +22,52 @@
             android:layout_height="wrap_content">
 
 
-            <!--            <androidx.appcompat.widget.SwitchCompat-->
-            <!--                android:id="@+id/lightDarkImage"-->
-            <!--                android:layout_width="80dp"-->
-            <!--                app:showText="false"-->
-            <!--                android:textSize="20sp"-->
-            <!--                android:layout_margin="15dp"-->
-            <!--                android:fontFamily="@font/sequel_sans_semi_bold_disp"-->
-            <!--                app:track="@drawable/custom_track"-->
-            <!--                android:thumb="@drawable/custom_thumb"-->
-            <!--                android:layout_height="30sp"-->
-            <!--                app:layout_constraintEnd_toEndOf="parent"-->
-            <!--                app:layout_constraintTop_toTopOf="parent" />-->
-            <ImageButton
-                android:id="@+id/lightDarkImage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#00ffffff"
-                android:layout_margin="15dp"
-                android:src="@drawable/ic_light_dark_mode"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+<!--            <androidx.appcompat.widget.SwitchCompat-->
+<!--                android:id="@+id/lightDarkImage"-->
+<!--                android:layout_width="80dp"-->
+<!--                app:showText="false"-->
+<!--                android:textSize="20sp"-->
+<!--                android:layout_margin="15dp"-->
+<!--                android:fontFamily="@font/sequel_sans_semi_bold_disp"-->
+<!--                app:track="@drawable/custom_track"-->
+<!--                android:thumb="@drawable/custom_thumb"-->
+<!--                android:layout_height="30sp"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+                <ImageButton
+                    android:id="@+id/lightDarkImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#00ffffff"
+                    android:layout_margin="15dp"
+                    android:src="@drawable/ic_light_dark_mode"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/dayText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/sequel_sans_semi_bold_disp"
-                android:text="Monday"
-                android:textAllCaps="false"
-                android:textColor="#322e4b"
-                android:textSize="36sp"
-                android:layout_marginStart="20dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/lightDarkImage" />
+                <TextView
+                    android:id="@+id/dayText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sequel_sans_semi_bold_disp"
+                    android:text="Monday"
+                    android:textAllCaps="false"
+                    android:textColor="#322e4b"
+                    android:textSize="36sp"
+                    android:layout_marginStart="20dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/lightDarkImage" />
 
-            <TextView
-                android:id="@+id/dayDateText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/sequel_sans_light_disp"
-                android:text="17th"
-                android:textColor="#8a899a"
-                android:textSize="36sp"
-                android:layout_marginStart="10dp"
-                app:layout_constraintStart_toEndOf="@+id/dayText"
-                app:layout_constraintTop_toTopOf="@+id/dayText" />
+                <TextView
+                    android:id="@+id/dayDateText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sequel_sans_light_disp"
+                    android:text="17th"
+                    android:textColor="#8a899a"
+                    android:textSize="36sp"
+                    android:layout_marginStart="10dp"
+                    app:layout_constraintStart_toEndOf="@+id/dayText"
+                    app:layout_constraintTop_toTopOf="@+id/dayText" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycleViewItems"
@@ -76,11 +76,13 @@
                 android:scrollbars="none"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="25dp"
+                android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintTop_toBottomOf="@id/dayText"
                 app:layout_constraintStart_toStartOf="@id/dayText"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:listitem="@layout/item_row"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
