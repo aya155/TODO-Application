@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -13,7 +15,7 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
-
+        vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -31,7 +33,10 @@ android {
         jvmTarget = '1.8'
     }
     buildFeatures{
-        viewBinding= true
+        viewBinding true
+    }
+    androidExtensions {
+        experimental = true
     }
 }
 
@@ -45,4 +50,19 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation "com.airbnb.android:lottie:3.7.0"
+    implementation 'com.dmitrymalkovich.android:material-design-dimens:1.4'
+    implementation ('com.thebluealliance:spectrum:0.7.1') {
+        exclude group: 'com.android.support'
+        exclude module: 'appcompat-v7'
+        exclude module: 'support-v4'
+    }
+    implementation ('org.adw.library:discrete-seekbar:1.0.1') {
+        exclude group: 'com.android.support'
+        exclude module: 'appcompat-v7'
+        exclude module: 'support-v4'
+    }
+    implementation 'com.jakewharton.threetenabp:threetenabp:1.2.1'
+    implementation 'com.github.vipulasri:timelineview:1.1.5'
+
 }

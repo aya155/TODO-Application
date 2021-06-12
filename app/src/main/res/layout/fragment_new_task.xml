@@ -58,6 +58,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginStart="30dp"
                 android:text="@string/task_name"
+                android:hint="Task name"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

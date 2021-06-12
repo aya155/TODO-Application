@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="135dp"
+    android:id="@+id/taskDescriptionCard"
+    android:background="@color/white"
+    android:layout_margin="20dp"
+    app:cardCornerRadius="15dp"
+    app:cardElevation="6dp">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <CheckBox
+            android:id="@+id/status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:button="@drawable/checkbox_size"
+            android:padding="5dp"
+            android:text="Done"
+            android:textColor="#7f8b94"
+            android:fontFamily="@font/sequel_sans_semi_bold_disp"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/taskTime"/>
+
+        <TextView
+            android:id="@+id/cardTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Design Meeting"
+            android:layout_margin="20dp"
+            android:fontFamily="@font/sequel_sans_semi_bold_disp"
+            android:textSize="16dp"
+            app:layout_constraintStart_toEndOf="@id/lineNoReminder"
+            app:layout_constraintTop_toTopOf="@id/lineNoReminder"/>
+        <View
+            android:id="@+id/lineNoReminder"
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:background="#d6a1ff"
+            android:layout_margin="15dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+        <TextView
+            android:id="@+id/taskTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Monday 09:00 - 10:15"
+            android:textColor="#7f8b94"
+            android:textSize="16dp"
+            android:fontFamily="@font/sequel_sans_light_disp"
+            app:layout_constraintTop_toBottomOf="@id/cardTitle"
+            app:layout_constraintStart_toStartOf="@id/cardTitle"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</com.google.android.material.card.MaterialCardView>

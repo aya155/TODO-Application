@@ -1,6 +1,7 @@
 package com.chocolate_team.todo_application.ui.fragments
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ abstract class BaseFragment<VB: ViewBinding>: Fragment(), BaseInterface<VB> {
     override var binding: VB?
         get() = _binding as VB?
         set(value) = TODO()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setup()
