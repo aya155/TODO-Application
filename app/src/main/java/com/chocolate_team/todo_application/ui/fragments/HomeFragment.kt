@@ -12,6 +12,7 @@ import com.chocolate_team.todo_application.ui.adapters.RecyclerAdapter
 import com.chocolate_team.todo_application.ui.adapters.TaskInteractionListener
 import com.chocolate_team.todo_application.util.Constant
 import com.chocolate_team.todo_application.util.DbUtil
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -22,18 +23,30 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() ,TaskInteractionListene
 
     override fun setup() {
         //Recycler View
-        val recyclerView: RecyclerView = binding!!.recycleViewItems
-
+//        val recyclerView: RecyclerView = binding!!.recycleViewItems
         //Data
         Calendar.getInstance().apply {
             add(Calendar.DATE, -1)
-            val c = "${get(Calendar.DAY_OF_MONTH)}-${get(Calendar.MONTH) + 1}-${get(Calendar.YEAR)}"
+            val dateString= SimpleDateFormat("yyyy-MM-dd").format(this.time).split('-')
+            val c = "${dateString[0]}-${dateString[1]}-${dateString[2]}"
+            log(c)
             val dataTasks = DbUtil.getEntries(c)
 
             //Recycler View Adapter
             Constant.tAdapter = activity?.let { RecyclerAdapter(dataTasks,this@HomeFragment) }!!
-            recyclerView.itemAnimator = DefaultItemAnimator()
-            recyclerView.adapter = Constant.tAdapter
+            binding?.apply {
+                recycleViewItems.apply {
+                    itemAnimator = DefaultItemAnimator()
+                    adapter = Constant.tAdapter
+                }
+                Calendar.getInstance().apply {
+                    this.time as Date
+                    dayText.text="${SimpleDateFormat("EEEE",Locale.getDefault()).format(this.time as Date)}"
+                    dayDateText.text=this.get(Calendar.DAY_OF_MONTH).toString()+"th"
+                }
+            }
+//            recyclerView.itemAnimator = DefaultItemAnimator()
+//            recyclerView.adapter = Constant.tAdapter
         }
     }
 

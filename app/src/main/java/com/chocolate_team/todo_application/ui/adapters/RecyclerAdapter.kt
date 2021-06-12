@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.chocolate_team.todo_application.R
 import com.chocolate_team.todo_application.databinding.ItemRowBinding
 import com.chocolate_team.todo_application.util.Constant
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class RecyclerAdapter(private var dataList: List<ContentValues>,val listener: TaskInteractionListener) :
@@ -36,9 +38,16 @@ class RecyclerAdapter(private var dataList: List<ContentValues>,val listener: Ta
             status.isChecked= s.get(Constant.STATUS)==1
             takeIf {s.get(Constant.REMIND)==1}?.let { lineNoReminder.background=ContextCompat.getDrawable(holder.itemView.context,R.color.remind_color)}
             taskTime.text="${s.get(Constant.START_TIME)} - ${s.get(Constant.END_TIME)}"
-        }
 
-    }
+            val date = SimpleDateFormat("yyyy-MM-dd").parse(s.get(Constant.DUE_DATE).toString())
+            val calendar = Calendar.getInstance().also { it.time= date }
+            val dayNum=calendar.get(Calendar.DAY_OF_MONTH)
+            takeIf {s.get(Constant.REMIND)==1}?.let { lineNoReminder.background=ContextCompat.getDrawable(holder.itemView.context,R.color.remind_color)}
+            taskTime.text="${SimpleDateFormat("EEEE",Locale.getDefault()).format(date)} $dayNum,${calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault())} "+
+                    "\n" +
+                    "${s.get(Constant.START_TIME)} - ${s.get(Constant.END_TIME)}"
+        }
+        }
     fun setData(newList:List<ContentValues>){
         val diffResult=DiffUtil.calculateDiff(TaskDiffUtil(dataList,newList))
         dataList=newList

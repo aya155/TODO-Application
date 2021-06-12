@@ -65,9 +65,12 @@ class NewTaskFragment: BaseFragment<FragmentNewTaskBinding>() {
     private fun createTask() {
         // add task in database
         DbUtil.insertEntry(contentValues)
-       Calendar.getInstance().apply { add(Calendar.DATE ,-1)
-       val c="${get(Calendar.DAY_OF_MONTH)}-${get(Calendar.MONTH) + 1}-${get(Calendar.YEAR)}"
-         Constant.tAdapter.setData(DbUtil.getEntries(c))
+        Calendar.getInstance().apply {
+            add(Calendar.DATE, -1)
+            val dateString= SimpleDateFormat("yyyy-MM-dd").format(this.time).split('-')
+            val c = "${dateString[0]}-${dateString[1]}-${dateString[2]}"
+            log(c)
+            Constant.tAdapter.setData(DbUtil.getEntries(c))
        }
     }
     private fun backToHome(){
@@ -128,7 +131,8 @@ class NewTaskFragment: BaseFragment<FragmentNewTaskBinding>() {
                 "$dayNum," +
                 "${calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault())}" // get month name
         // store date in content values
-        contentValues.put(Constant.DUE_DATE,"$dayNum-${calendar.get(Calendar.MONTH) + 1}-${calendar.get(Calendar.YEAR)}")
+        val dateString=SimpleDateFormat("yyyy-MM-dd").format(calendar.time).split('-')
+        contentValues.put(Constant.DUE_DATE,"${dateString[0]}-${dateString[1]}-${dateString[2]}")
     }
 
     override fun lightNightMode() {

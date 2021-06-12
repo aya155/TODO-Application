@@ -19,7 +19,7 @@ object DbUtil {
 
     fun getEntries(yesterdayDate:String):ArrayList<ContentValues>{
 //        Log.i("YY",yesterdayDate)
-        val cursor=databaseHelper.readableDatabase.rawQuery("SELECT * FROM ${Constant.TABLE_NAME} where ${Constant.DUE_DATE} >= ? order by ${Constant.DUE_DATE} , ${Constant.START_TIME} ", arrayOf<String>(yesterdayDate))
+        val cursor=databaseHelper.readableDatabase.rawQuery("SELECT * FROM ${Constant.TABLE_NAME} where date(${Constant.DUE_DATE}) >= ?  order by ${Constant.DUE_DATE} ,${Constant.START_TIME}", arrayOf<String>(yesterdayDate))
         return ArrayList<ContentValues>().apply {
             while (cursor.moveToNext()){
                 add(ContentValues().apply {
