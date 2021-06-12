@@ -1,10 +1,17 @@
 package com.chocolate_team.todo_application.ui.fragments
 
+import android.app.AlarmManager
+import android.app.PendingIntent
 import android.content.ContentValues
+import android.content.Intent
 import android.view.LayoutInflater
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.getSystemService
 import com.chocolate_team.todo_application.databinding.FragmentNewTaskBinding
 import com.chocolate_team.todo_application.util.Constant
 import com.chocolate_team.todo_application.util.DbUtil
+import com.chocolate_team.todo_application.util.MyBroadcastReceiver
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
@@ -69,8 +76,11 @@ class NewTaskFragment: BaseFragment<FragmentNewTaskBinding>() {
             add(Calendar.DATE, -1)
             val dateString= SimpleDateFormat("yyyy-MM-dd").format(this.time).split('-')
             val c = "${dateString[0]}-${dateString[1]}-${dateString[2]}"
-            log(c)
             Constant.tAdapter.setData(DbUtil.getEntries(c))
+            takeIf { contentValues.get(Constant.REMIND)==true }?.let{
+                createNotification(contentValues.get(Constant.TITLE).toString(),
+                    "$c - ${contentValues.get(Constant.START_TIME)} - ${contentValues.get(Constant.END_TIME)}", contentValues.getAsString(Constant.START_TIME),contentValues.getAsString(Constant.DUE_DATE))
+            }
        }
     }
     private fun backToHome(){
@@ -137,5 +147,23 @@ class NewTaskFragment: BaseFragment<FragmentNewTaskBinding>() {
 
     override fun lightNightMode() {
 
+    }
+    private fun createNotification(taskTitle:String, descption:String, time:String,date:String) {
+        val i= Intent(activity?.applicationContext,MyBroadcastReceiver::class.java)
+        i.putExtra("Title",taskTitle)
+        i.putExtra("Description",descption)
+        val pi= PendingIntent.getBroadcast(activity?.applicationContext,111,i,0)
+        val an=activity?.getSystemService(AppCompatActivity.ALARM_SERVICE) as AlarmManager
+        val ttime=time.replace(':',' ').split(' ')
+        val tdate=date.split('-')
+        val s =Calendar.getInstance().apply {
+            set(Calendar.MINUTE,ttime[1].toInt())
+            set(Calendar.HOUR,ttime[0].toInt())
+            set(Calendar.DAY_OF_MONTH,tdate[2].toInt())
+            set(Calendar.MONTH,tdate[1].toInt()-1)
+            set(Calendar.YEAR,tdate[0].toInt())
+        }.timeInMillis
+        an.set(AlarmManager.RTC_WAKEUP,s,pi)
+        Toast.makeText(activity,"Done", Toast.LENGTH_LONG).show()
     }
 }

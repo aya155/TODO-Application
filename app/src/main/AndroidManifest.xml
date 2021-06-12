@@ -12,10 +12,10 @@
         <activity android:name=".ui.activities.TabActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <receiver android:name=".util.MyBroadcastReceiver"/>
     </application>
 
 </manifest>
