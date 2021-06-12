@@ -15,4 +15,5 @@
     <color name="dayDateTextColor">#8a899a</color>
     <color name="purple">#B891BF</color>
     <color name="remind_color">#FF1C2E</color>
+    <color name="splash_background">#b5a3bc</color>
 </resources>

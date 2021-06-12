@@ -32,4 +32,8 @@
 <!--        <item name="fontFamily"></item>-->
         <item name="fontWeight">400</item>
     </style>
+
+    <style name="splashScreenTheme" parent="Theme.TODOApplication">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+    </style>
 </resources>
