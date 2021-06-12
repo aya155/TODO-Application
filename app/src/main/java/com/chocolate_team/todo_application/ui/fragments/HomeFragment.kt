@@ -1,6 +1,10 @@
 package com.chocolate_team.todo_application.ui.fragments
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.view.LayoutInflater
+import android.widget.Switch
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,6 +18,7 @@ import java.util.*
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     override val LOG_TAG: String="HOME_FRAGMENT"
     override val bindingInflater: (LayoutInflater) -> FragmentHomeBinding=FragmentHomeBinding::inflate
+
 
 
     override fun setup() {
@@ -34,11 +39,20 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         recyclerView.layoutManager = mLayoutManager
         recyclerView.itemAnimator = DefaultItemAnimator()
         recyclerView.adapter = mAdapter
+
+
+
     }
 
     override fun addCallBack() {
+
     }
 
-    override fun lightNightMode() {}
+    override fun lightNightMode() {
+
+    }
+
+
+
 
 }
