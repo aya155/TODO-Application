@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import com.chocolate_team.todo_application.databinding.ActivityTabBinding
 import com.chocolate_team.todo_application.ui.fragments.HomeFragment
+import com.chocolate_team.todo_application.util.PrefsUtil
 
 
 class TabActivity : BaseActivity<ActivityTabBinding>() {
@@ -13,6 +14,7 @@ class TabActivity : BaseActivity<ActivityTabBinding>() {
     override val bindingInflater: (LayoutInflater) -> ActivityTabBinding=ActivityTabBinding::inflate
 
     override fun setup() {
+        PrefsUtil.initialPrefs(applicationContext)
         addFragment(HomeFragment())
     }
 
