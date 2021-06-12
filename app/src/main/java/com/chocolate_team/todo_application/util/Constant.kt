@@ -3,6 +3,7 @@ package com.chocolate_team.todo_application.util
 import com.chocolate_team.todo_application.ui.adapters.RecyclerAdapter
 
 object Constant {
+    const val STATUS="status"
     const val REMIND="Remind"
     const val TABLE_NAME="Tasks"
     const val ID="id"

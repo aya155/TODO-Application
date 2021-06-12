@@ -2,6 +2,7 @@ package com.chocolate_team.todo_application.util
 
 import android.content.ContentValues
 import android.content.Context
+import android.util.Log
 import com.chocolate_team.todo_application.data.domain.TodoDbHelper
 
 object DbUtil {
@@ -16,8 +17,9 @@ object DbUtil {
         databaseHelper.writableDatabase.insert(Constant.TABLE_NAME,null,entry)
     }
 
-    fun getEntries():ArrayList<ContentValues>{
-        val cursor=databaseHelper.readableDatabase.rawQuery("SELECT * FROM ${Constant.TABLE_NAME}", arrayOf<String>())
+    fun getEntries(yesterdayDate:String):ArrayList<ContentValues>{
+//        Log.i("YY",yesterdayDate)
+        val cursor=databaseHelper.readableDatabase.rawQuery("SELECT * FROM ${Constant.TABLE_NAME} where ${Constant.DUE_DATE} >= ? order by ${Constant.DUE_DATE} , ${Constant.START_TIME} ", arrayOf<String>(yesterdayDate))
         return ArrayList<ContentValues>().apply {
             while (cursor.moveToNext()){
                 add(ContentValues().apply {
@@ -27,6 +29,8 @@ object DbUtil {
                     put(Constant.END_TIME,cursor.getString(3))
                     put(Constant.DUE_DATE,cursor.getString(4))
                     put(Constant.REMIND,cursor.getInt(5))
+                    put(Constant.REMIND,cursor.getInt(5))
+                    put(Constant.STATUS,cursor.getInt(6))
                 })
         }
         }

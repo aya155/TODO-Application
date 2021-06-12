@@ -8,4 +8,5 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="purple">#B891BF</color>
+    <color name="remind_color">#FF1C2E</color>
 </resources>
