@@ -24,7 +24,7 @@ class RecyclerAdapter(private val dataList: List<Int>, private val mContext: Act
 
     override fun onBindViewHolder(holder: ItemHolderView, position: Int) {
         val s = dataList[position]
-        holder.ivDivider.background = ResourcesCompat.getDrawable(mContext.resources,s,null)
+//        holder.ivDivider.background = ResourcesCompat.getDrawable(mContext.resources,s,null)
     }
 
     override fun getItemCount(): Int {
