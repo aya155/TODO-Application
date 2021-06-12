@@ -41,9 +41,5 @@ class RecyclerAdapter(private var dataList: List<ContentValues>) :
         diffResult.dispatchUpdatesTo(this)
     }
 
-    override fun getItemCount(): Int {
-        return dataList.count()
-    }
-
-
+    override fun getItemCount()= dataList.size
 }

@@ -1,9 +1,8 @@
 package com.chocolate_team.todo_application.ui.fragments
 
-import android.content.ContentValues
 import android.view.LayoutInflater
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.chocolate_team.todo_application.R
 import com.chocolate_team.todo_application.databinding.FragmentHomeBinding
@@ -25,9 +24,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         //Data
         Calendar.getInstance().apply {
             add(Calendar.DATE, -1)
-            var c =
-                "${get(Calendar.DAY_OF_MONTH)}-${get(Calendar.MONTH) + 1}-${get(Calendar.YEAR)}"
-
+            val c = "${get(Calendar.DAY_OF_MONTH)}-${get(Calendar.MONTH) + 1}-${get(Calendar.YEAR)}"
             val dataTasks = DbUtil.getEntries(c)
 
             //Recycler View Adapter
@@ -38,9 +35,17 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     override fun addCallBack() {
-        binding?.newTaskButton?.setOnClickListener{
-            activity?.supportFragmentManager?.beginTransaction()?.add(R.id.fragment_container,NewTaskFragment())?.commit()
+        binding?.apply {
+            // create new task
+            newTaskButton.setOnClickListener{
+                activity?.supportFragmentManager?.beginTransaction()?.add(R.id.fragment_container,NewTaskFragment())?.commit()
+            }
+            // change theme app
+            lightDarkImage.setOnClickListener{
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            }
         }
+
     }
 
     override fun lightNightMode() {}

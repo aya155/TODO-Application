@@ -3,7 +3,6 @@ package com.chocolate_team.todo_application.ui.fragments
 import android.content.ContentValues
 import android.view.LayoutInflater
 import com.chocolate_team.todo_application.databinding.FragmentNewTaskBinding
-import com.chocolate_team.todo_application.ui.adapters.RecyclerAdapter
 import com.chocolate_team.todo_application.util.Constant
 import com.chocolate_team.todo_application.util.DbUtil
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -67,7 +66,7 @@ class NewTaskFragment: BaseFragment<FragmentNewTaskBinding>() {
         // add task in database
         DbUtil.insertEntry(contentValues)
        Calendar.getInstance().apply { add(Calendar.DATE ,-1)
-       var c="${get(Calendar.DAY_OF_MONTH)}-${get(Calendar.MONTH) + 1}-${get(Calendar.YEAR)}"
+       val c="${get(Calendar.DAY_OF_MONTH)}-${get(Calendar.MONTH) + 1}-${get(Calendar.YEAR)}"
          Constant.tAdapter.setData(DbUtil.getEntries(c))
        }
     }
@@ -102,9 +101,8 @@ class NewTaskFragment: BaseFragment<FragmentNewTaskBinding>() {
             set(Calendar.HOUR, hour)
             set(Calendar.MINUTE, minute)
         }
-        SimpleDateFormat("hh:mm a").format(calendar.time).apply {
+        SimpleDateFormat("hh:mm a",Locale.getDefault()).format(calendar.time).apply {
             // show time in fragment
-
             binding?.taskTime?.text=if(time==Constant.END_TIME) binding?.taskTime?.text.toString() +this else "$this - "
             // store time in content Value
             contentValues.put(time,this)
@@ -126,7 +124,7 @@ class NewTaskFragment: BaseFragment<FragmentNewTaskBinding>() {
         val calendar = Calendar.getInstance().also { it.time=Date(date) }
         val dayNum=calendar.get(Calendar.DAY_OF_MONTH)
         // show date in fragment
-        binding?.taskDate?.text="${SimpleDateFormat("EEEE").format(date)} " + // get day name
+        binding?.taskDate?.text="${SimpleDateFormat("EEEE",Locale.getDefault()).format(date)} " + // get day name
                 "$dayNum," +
                 "${calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault())}" // get month name
         // store date in content values
