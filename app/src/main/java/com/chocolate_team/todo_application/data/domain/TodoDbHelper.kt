@@ -14,7 +14,8 @@ class TodoDbHelper(context: Context):SQLiteOpenHelper(context,DB_NAME,null,VERSI
                 "${Constant.START_TIME} TEXT," +
                 "${Constant.END_TIME} TEXT," +
                 "${Constant.DUE_DATE} TEXT," +
-                "${Constant.REMIND} BOOLEAN " +
+                "${Constant.REMIND} BOOLEAN ," +
+                "${Constant.STATUS} BOOLEAN " +
                 ")"
         database.execSQL(sql)
     }

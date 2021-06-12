@@ -2,20 +2,15 @@ package com.chocolate_team.todo_application.ui.adapters
 
 
 
-import android.app.Activity
 import android.content.ContentValues
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.NonNull
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.chocolate_team.todo_application.R
-import com.chocolate_team.todo_application.databinding.FragmentHomeBinding
 import com.chocolate_team.todo_application.databinding.ItemRowBinding
-import com.chocolate_team.todo_application.ui.fragments.BaseFragment
 import com.chocolate_team.todo_application.util.Constant
 
 
@@ -35,12 +30,9 @@ class RecyclerAdapter(private var dataList: List<ContentValues>) :
         val s = dataList[position]
         holder.binding.apply {
             cardTitle.text= s.get(Constant.TITLE).toString()
-            startTime.text= s.get(Constant.START_TIME).toString()
-            endTime.text=s.get(Constant.END_TIME).toString()
+            takeIf {s.get(Constant.REMIND)==1}?.let { lineNoReminder.background=ContextCompat.getDrawable(holder.itemView.context,R.color.remind_color)}
             taskTime.text="${s.get(Constant.START_TIME)} - ${s.get(Constant.END_TIME)}"
-//            quarterTimeline.background=ContextCompat.getDrawable(holder.itemView.context,)
         }
-//        holder.binding.quarterTimeline.background = ResourcesCompat.getDrawable(mContext.resources,s.get(Constant.TITLE),null)
 
     }
     fun setData(newList:List<ContentValues>){

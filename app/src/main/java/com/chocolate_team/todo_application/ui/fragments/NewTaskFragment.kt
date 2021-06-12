@@ -52,6 +52,7 @@ class NewTaskFragment: BaseFragment<FragmentNewTaskBinding>() {
                     contentValues.apply {
                         put(Constant.TITLE,taskTitle.text.toString())
                         put(Constant.REMIND,remindSwitch.isChecked)
+                        put(Constant.STATUS,false)
                     }
                     // save task in database
                     createTask()
@@ -65,7 +66,10 @@ class NewTaskFragment: BaseFragment<FragmentNewTaskBinding>() {
     private fun createTask() {
         // add task in database
         DbUtil.insertEntry(contentValues)
-        Constant.tAdapter.setData(DbUtil.getEntries())
+       Calendar.getInstance().apply { add(Calendar.DATE ,-1)
+       var c="${get(Calendar.DAY_OF_MONTH)}-${get(Calendar.MONTH) + 1}-${get(Calendar.YEAR)}"
+         Constant.tAdapter.setData(DbUtil.getEntries(c))
+       }
     }
     private fun backToHome(){
         // remove this fragment and back to home activity

@@ -10,7 +10,7 @@ import com.chocolate_team.todo_application.databinding.FragmentHomeBinding
 import com.chocolate_team.todo_application.ui.adapters.RecyclerAdapter
 import com.chocolate_team.todo_application.util.Constant
 import com.chocolate_team.todo_application.util.DbUtil
-import java.util.ArrayList
+import java.util.*
 
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
@@ -23,12 +23,18 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         val recyclerView: RecyclerView = binding!!.recycleViewItems
 
         //Data
-        val dataTasks= DbUtil.getEntries()
+        Calendar.getInstance().apply {
+            add(Calendar.DATE, -1)
+            var c =
+                "${get(Calendar.DAY_OF_MONTH)}-${get(Calendar.MONTH) + 1}-${get(Calendar.YEAR)}"
 
-        //Recycler View Adapter
-        Constant.tAdapter = activity?.let { RecyclerAdapter(dataTasks) }!!
-        recyclerView.itemAnimator = DefaultItemAnimator()
-        recyclerView.adapter = Constant.tAdapter
+            val dataTasks = DbUtil.getEntries(c)
+
+            //Recycler View Adapter
+            Constant.tAdapter = activity?.let { RecyclerAdapter(dataTasks) }!!
+            recyclerView.itemAnimator = DefaultItemAnimator()
+            recyclerView.adapter = Constant.tAdapter
+        }
     }
 
     override fun addCallBack() {
