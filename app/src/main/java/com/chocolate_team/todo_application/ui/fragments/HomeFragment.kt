@@ -1,11 +1,16 @@
 package com.chocolate_team.todo_application.ui.fragments
 
 import android.content.ContentValues
+import android.content.Context
+import android.content.SharedPreferences
 import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
+import android.widget.Switch
 import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.airbnb.lottie.LottieAnimationView
 import com.chocolate_team.todo_application.R
 import com.chocolate_team.todo_application.databinding.FragmentHomeBinding
 import com.chocolate_team.todo_application.ui.adapters.RecyclerAdapter

@@ -7,12 +7,10 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="background_color">#f1f1f1</color>
-    <color name="cardBackground">#ffffff</color>
-    <color name="text_color">#7f8b94</color>
+    <color name="background_color">#1E1E1E</color>
+    <color name="cardBackground">#3C3C3C</color>
+    <color name="text_color">#CDD4D8</color>
     <color name="view_color">#d6a1ff</color>
-    <color name="dayTextColor">#322e4b</color>
-    <color name="dayDateTextColor">#8a899a</color>
-    <color name="purple">#B891BF</color>
-    <color name="remind_color">#FF1C2E</color>
+    <color name="dayTextColor">#ffffff</color>
+    <color name="dayDateTextColor">#ffffff</color>
 </resources>
