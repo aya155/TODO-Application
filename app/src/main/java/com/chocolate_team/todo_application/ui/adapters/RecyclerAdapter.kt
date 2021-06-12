@@ -14,7 +14,7 @@ import com.chocolate_team.todo_application.databinding.ItemRowBinding
 import com.chocolate_team.todo_application.util.Constant
 
 
-class RecyclerAdapter(private var dataList: List<ContentValues>) :
+class RecyclerAdapter(private var dataList: List<ContentValues>,val listener: TaskInteractionListener) :
     RecyclerView.Adapter<RecyclerAdapter.ItemHolderView>() {
 
     class ItemHolderView(view: View) : RecyclerView.ViewHolder(view) {
@@ -30,6 +30,10 @@ class RecyclerAdapter(private var dataList: List<ContentValues>) :
         val s = dataList[position]
         holder.binding.apply {
             cardTitle.text= s.get(Constant.TITLE).toString()
+            status.setOnCheckedChangeListener { compoundButton, b ->
+                listener.onchangeDoneBox(s,b)
+            }
+            status.isChecked= s.get(Constant.STATUS)==1
             takeIf {s.get(Constant.REMIND)==1}?.let { lineNoReminder.background=ContextCompat.getDrawable(holder.itemView.context,R.color.remind_color)}
             taskTime.text="${s.get(Constant.START_TIME)} - ${s.get(Constant.END_TIME)}"
         }

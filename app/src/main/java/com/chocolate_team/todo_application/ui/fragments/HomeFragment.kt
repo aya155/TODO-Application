@@ -1,18 +1,21 @@
 package com.chocolate_team.todo_application.ui.fragments
 
+import android.content.ContentValues
 import android.view.LayoutInflater
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.RecyclerView
 import com.chocolate_team.todo_application.R
 import com.chocolate_team.todo_application.databinding.FragmentHomeBinding
 import com.chocolate_team.todo_application.ui.adapters.RecyclerAdapter
+import com.chocolate_team.todo_application.ui.adapters.TaskInteractionListener
 import com.chocolate_team.todo_application.util.Constant
 import com.chocolate_team.todo_application.util.DbUtil
 import java.util.*
 
 
-class HomeFragment : BaseFragment<FragmentHomeBinding>() {
+class HomeFragment : BaseFragment<FragmentHomeBinding>() ,TaskInteractionListener{
     override val LOG_TAG: String="HOME_FRAGMENT"
     override val bindingInflater: (LayoutInflater) -> FragmentHomeBinding=FragmentHomeBinding::inflate
 
@@ -28,7 +31,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             val dataTasks = DbUtil.getEntries(c)
 
             //Recycler View Adapter
-            Constant.tAdapter = activity?.let { RecyclerAdapter(dataTasks) }!!
+            Constant.tAdapter = activity?.let { RecyclerAdapter(dataTasks,this@HomeFragment) }!!
             recyclerView.itemAnimator = DefaultItemAnimator()
             recyclerView.adapter = Constant.tAdapter
         }
@@ -49,5 +52,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     override fun lightNightMode() {}
+    override fun onchangeDoneBox(task: ContentValues, checked: Boolean) {
+            task.put(Constant.STATUS,checked)
+            DbUtil.updateStatus(task)
+    }
 
 }

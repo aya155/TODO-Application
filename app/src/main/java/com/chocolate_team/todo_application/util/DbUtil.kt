@@ -35,4 +35,7 @@ object DbUtil {
         }
         }
     }
+    fun updateStatus(task:ContentValues,){
+         databaseHelper.writableDatabase.update(Constant.TABLE_NAME,task,"${Constant.ID}=?", arrayOf(task.get(Constant.ID).toString()))
+    }
 }
